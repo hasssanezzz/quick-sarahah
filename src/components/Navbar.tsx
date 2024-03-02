@@ -4,7 +4,7 @@ import { validateToken } from '@/actions/auth'
 import NavActionButtons from './NavActionButtons'
 
 async function Navbar() {
-  const { success } = await validateToken()
+  const { success, data } = await validateToken()
 
   return (
     <nav className="h-20 w-full bg-blue-500 text-white">
@@ -15,7 +15,7 @@ async function Navbar() {
 
         <div className="space-x-3">
           {success ? (
-            <NavActionButtons />
+            <NavActionButtons username={data?.username!} />
           ) : (
             <>
               <Link href="/auth/signup">
