@@ -10,9 +10,16 @@ const passwordValidation = z
   .min(8, 'Password must be at least 8 characters long')
   .max(255, 'Password cannot exceed 255 characters')
 
+const messageValidation = z
+  .string()
+  .min(2, 'Message must be at least 2 characters long')
+  .max(2555, 'Message cannot exceed 2555 characters')
 
 export const loginSignupFormSchema = z.object({
   username: usernameValidation,
   password: passwordValidation,
 })
 
+export const sendMessageFormSchema = z.object({
+  message: messageValidation,
+})
