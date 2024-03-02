@@ -1,3 +1,5 @@
+'use server'
+
 import { cookies } from 'next/headers'
 import { compare } from 'bcryptjs'
 import { sign, verify } from 'jsonwebtoken'
@@ -5,6 +7,7 @@ import { sign, verify } from 'jsonwebtoken'
 import { TOKEN_COOKIE_NAME } from '@/constants'
 import { prisma } from '../db'
 import { hashPassword } from '../utils'
+import { redirect } from 'next/navigation'
 
 export async function login(username: string, password: string) {
   try {
@@ -117,6 +120,19 @@ export async function validateToken() {
         username: user?.username,
       },
     }
+  } catch (e) {
+    console.log(e)
+    return {
+      success: false,
+      errors: [{ path: 'root', message: 'Internal server error' }],
+    }
+  }
+}
+
+export async function logout() {
+  try {
+    cookies().delete(TOKEN_COOKIE_NAME)
+    redirect('/auth/login')
   } catch (e) {
     console.log(e)
     return {
