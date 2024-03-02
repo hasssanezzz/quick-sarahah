@@ -1,3 +1,5 @@
+'use server'
+
 import { revalidatePath } from 'next/cache'
 import { validateToken } from '../auth'
 import { prisma } from '../db'
@@ -38,6 +40,10 @@ export async function getMessages() {
           username: results.data?.username,
         },
       },
+      orderBy: {
+        createdAt: 'desc'
+      },
+      take: 50
     })
 
     return { success: true, data: messages }
