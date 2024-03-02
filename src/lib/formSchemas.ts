@@ -2,6 +2,7 @@ import { z } from 'zod'
 
 const usernameValidation = z
   .string()
+  .regex(/^[0-9a-z_]+$/, 'Username must consist only from lower case letters, numbers and underscores')
   .min(2, 'Username must be at least 2 characters long')
   .max(255, 'Username cannot exceed 255 characters')
 
