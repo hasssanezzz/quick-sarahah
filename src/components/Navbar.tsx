@@ -1,9 +1,10 @@
 import Link from 'next/link'
-import { HiOutlineLogout, HiOutlineShare } from 'react-icons/hi'
+import { HiOutlineUser } from 'react-icons/hi'
 import { validateToken } from '@/actions/auth'
+import NavActionButtons from './NavActionButtons'
 
 async function Navbar() {
-  const { success, data } = await validateToken()
+  const { success } = await validateToken()
 
   return (
     <nav className="h-20 w-full bg-blue-500 text-white">
@@ -12,13 +13,16 @@ async function Navbar() {
           Brutally honest
         </Link>
 
-        <div className='space-x-3'>
-          <button>
-            <HiOutlineShare size={20} />
-          </button>
-          <button>
-            <HiOutlineLogout size={20} />
-          </button>
+        <div className="space-x-3">
+          {success ? (
+            <NavActionButtons />
+          ) : (
+            <>
+              <Link href="/auth/signup">
+                <HiOutlineUser />
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </nav>
