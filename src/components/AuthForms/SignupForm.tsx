@@ -84,7 +84,7 @@ function SignupForm() {
         <div className="flex items-center justify-between flex-col gap-5">
           <Button
             type="submit"
-            className="bg-indigo-600 hover:bg-indigo-700 mx-auto px-10"
+            className="bg-blue-600 hover:bg-blue-700 mx-auto px-10"
             asChild={false}
           >
             Submit
@@ -92,7 +92,7 @@ function SignupForm() {
 
           <p className="text-gray-400">
             Already have an account?,{' '}
-            <Link href="/auth/login" className="text-indigo-400 underline">
+            <Link href="/auth/login" className="text-blue-400 underline">
               Login
             </Link>
           </p>
