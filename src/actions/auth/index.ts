@@ -31,7 +31,7 @@ export async function login(username: string, password: string) {
     if (!validPassword)
       return {
         success: false,
-        errors: [{ path: 'password', message: 'Username not found' }],
+        errors: [{ path: 'password', message: 'Wrong password' }],
       }
 
     // create token
